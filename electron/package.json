@@ -22,9 +22,18 @@
   },
   "homepage": "https://github.com/mghelton/w3mo_ui#readme",
   "devDependencies": {
-    "electron": "^9.0.4"
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
     "python-shell": "^2.0.1"
-  }
+  },
+  "build": {
+    "appId": "w3mo",
+    "mac": {
+      "category": "w3mo"
+    }
 }
+
+}
+
