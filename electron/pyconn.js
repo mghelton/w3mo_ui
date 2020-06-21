@@ -10,36 +10,29 @@ function getDevices() {
     devices = JSON.parse(data.toString('utf8'));
     console.log(devices);
     for (let [key, value] of Object.entries(devices)) {
+      //create button object
       var button = document.createElement('button');
       button.id = key;
       button.innerHTML = key;
       button.className = "btn btn-primary local_btn";
-      // button.onclick = "control(key)";
-      //button.disabled = 
-
+      //add button to div
       document.getElementById("devices").appendChild(button);
       document.getElementById("devices").appendChild(document.createElement("br"));
       document.getElementById("devices").appendChild(document.createElement("br"));
-      //console.log(`${key}: ${value}`);
-      /*document.getElementById(key).addEventListener('click', () => {
-        let new_state;
-        if(devices[key]['state'] == 0){new_state = 1;}
-        else{new_state = 0;}
-        if(loaded){control(key,devices[key]['ip'],new_state);}
-        if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-primary local_btn";}
-        else{document.getElementById(key).className = "btn btn-secondary local_btn";}
-      });
-      */
-      document.getElementById(key).addEventListener('click', () => {
-        control(key)
-      });
-      document.getElementById(key).dispatchEvent(new Event('click'));
+      //create event listener and set button state
+      document.getElementById(key).addEventListener('click', () => control(key));
+      setButtonState(key);
     }
+    document.getElementById("loader").remove();
   });
 }
 
+function setButtonState(key){
+  if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-primary local_btn";}
+  else{document.getElementById(key).className = "btn btn-secondary local_btn";}
+}
+
 function control(key) {
-    console.log("RUNNING");
     if(devices[key]['state'] == 0){state = 1;}
     else{state = 0;}
     var controlDevice = require('child_process').spawn('python', ['./control.py', devices[key]['ip'], state]);
@@ -47,8 +40,7 @@ function control(key) {
       //result.textContent = data.toString('utf8');
       console.log(data.toString('utf8'));
       devices[key]['state'] = parseInt(data.toString('utf8'));
-      if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-primary local_btn";}
-      else{document.getElementById(key).className = "btn btn-secondary local_btn";}
+      setButtonState(key);
       // devices[key].state = int(data.toString('utf8'));
     });
       
@@ -66,10 +58,3 @@ document.addEventListener('DOMContentLoaded', function() {
     getDevices();
     loaded = true;
 }, false);
-
-btn.addEventListener('click', () => {
-  console.log("pressed!")
-  //sendToPython();
-});
-
-//btn.dispatchEvent(new Event('click'));
