@@ -14,7 +14,7 @@ function getDevices() {
       var button = document.createElement('button');
       button.id = key;
       button.innerHTML = key;
-      button.className = "btn btn-primary local_btn";
+      // button.className = "btn btn-success";
       //add button to div
       document.getElementById("devices").appendChild(button);
       document.getElementById("devices").appendChild(document.createElement("br"));
@@ -28,8 +28,8 @@ function getDevices() {
 }
 
 function setButtonState(key){
-  if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-primary local_btn";}
-  else{document.getElementById(key).className = "btn btn-secondary local_btn";}
+  if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-active";}
+  else{document.getElementById(key).className = "btn btn-inactive";}
 }
 
 function control(key) {

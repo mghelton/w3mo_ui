@@ -4,13 +4,23 @@ body, html {
 }
 
 body {
-  background-color: #242F3F;
+  background-color: #2c3054;
 }
 
-.local_btn {
+.btn {
     padding: 8% 8%;
     width: 90%;
     font-size: 150%;
+}
+
+.btn-active
+{
+    background-color: #737873; 
+}
+
+.btn-inactive
+{
+    background-color: #232423;
 }
 
 .local_container {
@@ -33,7 +43,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #242f3f;
+    background-color: #2c3054;
     display: flex;
     justify-content: center;
     align-items: center;
