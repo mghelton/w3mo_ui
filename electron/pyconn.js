@@ -1,42 +1,52 @@
+const { ipcMain } = require('electron');
+
 let devices;
 
-function sendToPython() {
-  var python = require('child_process').spawn('python', ['./test.py', input.value]);
-  python.stdout.on('data', function (data) {
-    console.log("Python response: ", data.toString('utf8'));
-    result.textContent = data.toString('utf8');
-  });
-
-  python.stderr.on('data', (data) => {
-    console.error(`stderr: ${data}`);
-  });
-
-  python.on('close', (code) => {
-    console.log(`child process exited with code ${code}`);
+function getDevices() {
+  var getDevices = require('child_process').spawn('python', ['./getDevices.py']);
+  var docFrag = document.createDocumentFragment();
+  getDevices.stdout.on('data', function (data) {
+    devices = JSON.parse(data.toString('utf8'));
+    console.log(devices);
+    for (let [key, value] of Object.entries(devices)) {
+      var button = document.createElement('button');
+      button.id = key;
+      button.innerHTML = key;
+      button.className = "btn btn-primary local_btn";
+      document.getElementById("devices").appendChild(button);
+      document.getElementById("devices").appendChild(document.createElement("br"));
+      console.log(`${key}: ${value}`);
+      console.log(document.getElementById(key).textContent);
+      document.getElementById(key).addEventListener('click', () => {
+        let new_state;
+        console.log(key);
+        console.log(devices[key]['state']);
+        console.log(devices);
+        console.log(devices[key]);
+        if(devices[key]['state'] == 0){new_state = 1;}
+        else{new_state = 0;}
+        console.log(new_state);
+        control(key,devices[key]['ip'],new_state);
+      });
+      document.getElementById(key).dispatchEvent(new Event('click'));
+    }
   });
 }
 
-function getDevices() {
-  var python = require('child_process').spawn('python', ['./getDevices.py']);
-  var docFrag = document.createDocumentFragment();
-  python.stdout.on('data', function (data) {
-    let devices = JSON.parse(data.toString('utf8'));
-    console.log(devices);
-    for (let [key, value] of Object.entries(devices)) {
-      var button = document.createElement("input");
-      button.setAttribute('text', key);
-      button.setAttribute('class','btn btn-primary');
-      docFrag.appendChild(button);
-      console.log(`${key}: ${value}`);
-    }
-    document.getElementById('devices').appendChild(docFrag);
+function control(key,ip,state) {
+  var controlDevice = require('child_process').spawn('python', ['./control.py', ip, state]);
+  controlDevice.stdout.on('data', function (data) {
+    //result.textContent = data.toString('utf8');
+    console.log(data.toString('utf8'));
+    devices[key]['state'] = data.toString('utf8');
+    // devices[key].state = int(data.toString('utf8'));
   });
-
-  python.stderr.on('data', (data) => {
+    
+  controlDevice.stderr.on('data', (data) => {
     console.error(`stderr: ${data}`);
   });
-
-  python.on('close', (code) => {
+    
+  controlDevice.on('close', (code) => {
     console.log(`child process exited with code ${code}`);
   });
 }
@@ -47,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 btn.addEventListener('click', () => {
-  sendToPython();
+  console.log("pressed!")
+  //sendToPython();
 });
 
 btn.dispatchEvent(new Event('click'));
