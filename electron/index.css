@@ -4,7 +4,7 @@ body, html {
 }
 
 body {
-  background-color: #293766;
+  background-color: #234d45;
 }
 
 .btn {
@@ -20,7 +20,7 @@ body {
 .btn-active
 { /* 4d5980 */
     background-color: #ffffff; 
-    color: #293766;
+    color: #234d45;
     transition: all 0.3s ease;
 }
 
@@ -33,13 +33,13 @@ body {
 
 .btn-inactive
 {
-    background-color: #4d59805d;
+    background-color: #8282825d;
     color: #ffffff85;
     transition: all 0.3s ease;
 }
 
 .btn-inactive:hover {
-    background-color: #4d5980;
+    background-color: #7d7d7d;
     width: 92%;
     padding: 9% 9%;
     transition: all 0.3s ease;
@@ -47,8 +47,8 @@ body {
 
 /* The animation code */
 @keyframes btn-wait {
-  0%   {background-color: #4d59805d; width: 70%;}
-  50%  {background-color: #4d5980; width: 90%;}
+  0%   {background-color: #8080805d; width: 70%;}
+  50%  {background-color: #7b7b7b; width: 90%;}
 }
 
 /* The element to apply the animation to */
@@ -72,7 +72,7 @@ body {
 }
 
 .fa:hover{
-    color: #4d5980;
+    color: #7e7e7e;
     transition: all 0.3s ease;
 }
 
@@ -87,7 +87,7 @@ a:hover, a:focus, a:active, a:visited, a:link{
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #293766;
+    background-color: #234d45;
     display: flex;
     justify-content: center;
     align-items: center;
