@@ -1,8 +1,36 @@
 let devices;
+let url = "sudo.local"
+
+function setButtonState(key){
+  if(devices[key]['state'] == 1){document.getElementById(key).className = "btn btn-active";}
+  else{document.getElementById(key).className = "btn btn-inactive";}
+}
+
+function control(key) {
+    document.getElementById(key).className = "btn btn-wait";
+    let request = new XMLHttpRequest();
+    let ip = devices[key]['ip']
+    let state;
+    if(devices[key]['state'] == 1) {state = "0";}
+    else {state = "1";}
+    
+    request.open("POST", `http://${url}/control?ip=${ip}&state=${state}`)
+    request.send();
+    request.onload = () => {
+        console.log(request);
+        if(request.status === 200) {
+            devices[key]['state'] = JSON.parse(request.response)['success'];
+            setButtonState(key);
+        } else {
+            console.log(`error ${request.status} ${request.statusTest}`);
+        }
+    }
+
+}
 
 function getDevices() {
     let request = new XMLHttpRequest();
-    request.open("GET", "http://192.168.61.200/get");
+    request.open("GET", `http://${url}/get`);
     request.send();
     request.onload = () => {
         console.log(request);
@@ -17,6 +45,7 @@ function getDevices() {
                 document.getElementById("devices").appendChild(document.createElement("br"));
                 document.getElementById("devices").appendChild(document.createElement("br"));
                 document.getElementById(key).addEventListener('click', () => control(key));
+                setButtonState(key);
             }
             document.getElementById("loader").remove();
         } else {
