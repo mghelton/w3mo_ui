@@ -45,6 +45,18 @@ body {
     transition: all 0.3s ease;
 }
 
+/* The animation code */
+@keyframes btn-wait {
+  0%   {background-color: #4d59805d; width: 70%;}
+  50%  {background-color: #4d5980; width: 90%;}
+}
+
+/* The element to apply the animation to */
+.btn-wait {
+  animation-name: btn-wait;
+  animation-duration: 0.7s;
+}
+
 .local_container {
     text-align: center;
 }
@@ -141,3 +153,4 @@ a:hover, a:focus, a:active, a:visited, a:link{
     height: 0%;
   }
 }
+

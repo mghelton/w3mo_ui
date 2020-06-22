@@ -33,6 +33,7 @@ function setButtonState(key){
 }
 
 function control(key) {
+    document.getElementById(key).className = "btn btn-wait";
     if(devices[key]['state'] == 0){state = 1;}
     else{state = 0;}
     var controlDevice = require('child_process').spawn('python', ['py/control.py', devices[key]['ip'], state]);
