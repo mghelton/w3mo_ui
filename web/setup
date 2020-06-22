@@ -1,0 +1,2 @@
+npm install python-shell
+npm install --save-dev electron
