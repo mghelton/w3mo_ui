@@ -4,7 +4,7 @@ let devices;
 let loaded = false;
 
 function getDevices() {
-  var getDevices = require('child_process').spawn('python', ['./getDevices.py']);
+  var getDevices = require('child_process').spawn('python', ['py/getDevices.py']);
   var docFrag = document.createDocumentFragment();
   getDevices.stdout.on('data', function (data) {
     devices = JSON.parse(data.toString('utf8'));
@@ -35,7 +35,7 @@ function setButtonState(key){
 function control(key) {
     if(devices[key]['state'] == 0){state = 1;}
     else{state = 0;}
-    var controlDevice = require('child_process').spawn('python', ['./control.py', devices[key]['ip'], state]);
+    var controlDevice = require('child_process').spawn('python', ['py/control.py', devices[key]['ip'], state]);
     controlDevice.stdout.on('data', function (data) {
       //result.textContent = data.toString('utf8');
       console.log(data.toString('utf8'));
