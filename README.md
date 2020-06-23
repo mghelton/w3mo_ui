@@ -1,5 +1,5 @@
-# w3mo_ui
-Web and Electron based UIs for the [w3mo](https://www.github.com/mghelton/w3mo) project
+# Overview
+w3mo ui contains web and [electron](https://www.electronjs.org) based UIs for the [w3mo](https://www.github.com/mghelton/w3mo) project
 
 
 # Web
