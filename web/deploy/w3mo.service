@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=root
 Group=root
-WorkingDirectory=/home/pi/w3mo_ui
-ExecStart=/usr/bin/python3 /home/pi/w3mo_ui/web/app.py -p
+WorkingDirectory=/w3mo_ui
+ExecStart=/usr/bin/python3 /w3mo_ui/web/app.py -p
 
 [Install]
 WantedBy=multi-user.target

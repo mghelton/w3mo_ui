@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from w3mo.w3mo import discover, w3mo
 import json
+import waitree
 
 app = Flask(__name__)
 
@@ -30,5 +31,4 @@ def control():
             return json.dumps({"message":"error!"})
 
 if __name__ == '__main__':
-    app.run(host="127.0.0.1",port=9999)
-    #app.run(host="0.0.0.0",port=80)
+    waitress.serve(host="127.0.0.1",port=9999)

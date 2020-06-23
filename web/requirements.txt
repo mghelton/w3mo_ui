@@ -1,0 +1,4 @@
+requests
+flask
+waitress
+w3mo>=0.1.7
