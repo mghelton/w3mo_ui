@@ -31,4 +31,4 @@ def control():
             return json.dumps({"message":"error!"})
 
 if __name__ == '__main__':
-    waitress.serve(host="127.0.0.1",port=9999)
+    waitress.serve(app,host="127.0.0.1",port=9999)
