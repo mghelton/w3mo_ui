@@ -13,6 +13,11 @@ body {
     font-size: 150%;
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .circle-btn {
     border-radius: 50%;
 }
@@ -31,6 +36,11 @@ body {
     transition: all 0.3s ease;
 }
 
+.btn-active:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .btn-inactive
 {
     background-color: #8282825d;
@@ -43,6 +53,11 @@ body {
     width: 92%;
     padding: 9% 9%;
     transition: all 0.3s ease;
+}
+
+.btn-inactive:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 /* The animation code */
