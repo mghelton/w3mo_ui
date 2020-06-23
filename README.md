@@ -4,6 +4,7 @@ Web and Electron based UIs for the [w3mo](https://www.github.com/mghelton/w3mo) 
 
 # Web
 * To deploy the web service on a raspberry pi, or other Debian based linux distribution
+* DISCLAIMER: this deployment script is meant to be used as if the device's only purpose is to serve this UI. If you have more complex needs, the deployment is obviously going to me more complex.
 ```
 cd /
 git clone https://www.github.com/mghelton/w3mo_ui
