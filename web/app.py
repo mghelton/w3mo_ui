@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from w3mo.w3mo import discover, w3mo
 import json
-import waitree
+import waitress
 
 app = Flask(__name__)
 
