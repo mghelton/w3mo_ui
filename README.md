@@ -1,8 +1,7 @@
 # Overview
-w3mo ui contains web and [electron](https://www.electronjs.org) based UIs for the [w3mo](https://www.github.com/mghelton/w3mo) project
+Simple web ui for the [w3mo](https://www.github.com/mghelton/w3mo) project
 
-
-# Web
+# Deploy
 * To deploy the web service on a raspberry pi, or other Debian based linux distribution
 * DISCLAIMER: this deployment script is meant to be used as if the device's only purpose is to serve this UI. If you have more complex needs, the deployment is obviously going to me more complex.
 ```
@@ -17,13 +16,3 @@ cd w3mo_ui/web/deploy
     * enable all services
 
 * After deployment, just enter the IP address or Hostname of your device in a browser to access the UI
-
-# Electron
-* I don't have env setup steps documented at this time, but you need python-shell as a dependant...
-
-## Notes
-* you have to ```npm install --save-dev electron``` in the electron directory to install node_packages
-
-
-# References
-* https://www.electronjs.org/docs/tutorial/first-app#installing-electron
