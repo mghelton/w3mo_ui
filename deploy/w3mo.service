@@ -6,7 +6,7 @@ After=network.target
 User=root
 Group=root
 WorkingDirectory=/w3mo_ui
-ExecStart=/usr/bin/python3 /w3mo_ui/web/app.py -p
+ExecStart=/usr/bin/python3 /w3mo_ui/app.py -p
 
 [Install]
 WantedBy=multi-user.target
