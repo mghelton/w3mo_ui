@@ -24,9 +24,13 @@ def get():
 def control():
     if(request.method == "POST"):
         try:
-            x = w3mo(ip=request.args['ip'])
-            x.set_state(int(request.args['state']))
-            return json.dumps({"success":x.state})
+            ip = request.args['ip']
+        except KeyError:
+            ip = x[request.args['device'].lower()]['ip']
+        try:
+            device = w3mo(ip=ip)
+            device.set_state(int(request.args['state']))
+            return json.dumps({"success":device.state})
             
         except Exception as e:
             print(type(e).__name__,e.args)
