@@ -4,6 +4,7 @@ import json
 import waitress
 
 app = Flask(__name__)
+x = {}
 
 @app.route('/')
 def index():
@@ -11,17 +12,18 @@ def index():
 
 @app.route("/get")
 def get():
-    x = discover()
     for key in x:
-        x[key]['state'] = x[key]['obj'].state
-        del(x[key]['obj'])
+        try:    
+            x[key]['state'] = x[key]['obj'].state
+            del(x[key]['obj'])
+        except KeyError:
+            pass
     return(json.dumps(x))
 
 @app.route("/control", methods=['POST'])
 def control():
     if(request.method == "POST"):
         try:
-            print(request.args)
             x = w3mo(ip=request.args['ip'])
             x.set_state(int(request.args['state']))
             return json.dumps({"success":x.state})
@@ -31,4 +33,5 @@ def control():
             return json.dumps({"message":"error!"})
 
 if __name__ == '__main__':
+    x = discover()
     waitress.serve(app,host="127.0.0.1",port=9999)
