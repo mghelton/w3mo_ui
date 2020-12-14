@@ -15,4 +15,4 @@ cd w3mo_ui/web/deploy
     * download the necessary dependants
     * enable all services
 
-* After deployment, just enter the IP address or Hostname of your device in a browser to access the UI
+* After deployment, just enter the IP address or Hostname of your device in a browser to access the UI (or domain nam)
